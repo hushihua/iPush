@@ -7,21 +7,23 @@
 
 
 iPush同时提供APNS和Tcp两种方式的下行推送功能，用户可以根据项目需要，选择性使用。
-如果只是简单接入APNS代理推送功能，说明4中关于Tcp功能接入部分可以忽略，以下是进行接入的流程步骤
+如果只是简单接入APNS代理推送功能，说明4中关于Tcp功能接入部分可以忽略，以下是进行接入的流程步骤:
 
-## 一：联系客服，开设帐号，生成appkey
+## 一：开设帐号，生成appkey
+
+联系工作人员，提供 boundId, 测试环境apns证书，正式环境apns证书，生成 appkey。
 
 ##  二：集成SDK
 
 ### CocoaPods 集成
 
-支持 CocoaPods 方式和手动集成两种方式。我们推荐使用 CocoaPods 方式集成，以便随时更新至最新版本。
+iPush支持 CocoaPods 方式和手动集成两种方式。我们推荐使用 CocoaPods 方式集成，以便随时更新至最新版本。
 
 在 Podfile 中增加以下内容。
 ```
  pod 'iPush'
 ```
-执行以下命令，安装 LMPush。
+执行以下命令，安装 iPush。
 ```
  pod install
 ```
@@ -30,7 +32,7 @@ iPush同时提供APNS和Tcp两种方式的下行推送功能，用户可以根�
  pod repo update
 ```
 
-## 三：在代码处理
+## 三：代码流程接入
 
 ### 1.在 AppDelegate.m 文件中引入 iPush，并初始化（以Swift项目为例）。
 ```
