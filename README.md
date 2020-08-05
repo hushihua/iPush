@@ -54,7 +54,7 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
     
 }
 ```
-### 2. 提交APNS返回的推送token
+### 2. 提交APNS返回的推送token (deviceToken)
 在合适的位置进行推送token的提交，并确保提交成功。
 ```
 PushApi.getInstance().pushToken(data:deviceToken) { (response:PHResponse<Bool>) in
@@ -82,6 +82,8 @@ func application(_ application: UIApplication, didReceiveRemoteNotification user
 
 ### 4. 设置Tcp推送监听器
 
+当需要用到Tcp通道进行推送时，要接入iPush tcp 推送流程，接入顺序如下：
+
 1. 实现 PushCmdDelegate 中的方法，当接收到tcp数据时回调 ```onReceiveCmd```方法
 ```
 public protocol PushCmdDelegate: NSObject {
@@ -98,7 +100,23 @@ PHCMDItem的数据结构如下：
 ```
 
 2. 设置tcp推送监听器
+
 通过上面，完成实例化监听器后，通过以下代友实现监听器的绑定
 ```
 PushApi.getInstance().delegate = self
 ```
+
+### 5. 生成iPush平如下的唯一id (registerId)
+
+registerId用于在iPush平台唯一标识用户设备。生成唯一id后，上传到自己的服务中，与自己的业务系统用户id进行绑定。当需要进行推送时，业务系统附带registerId，调用iPush后台接口，对特定用记的特定设置进行精准推送。
+
+生成registerId的代码如下，可以要启动的回调方法中进行调用：
+```
+PushApi.getInstance().registerUID { (response:PHResponse<String>) in
+    if response.isSuccess = true, let sId:String = response.data{
+        print("Register_Id = \(String)")
+    }
+}
+
+```
+
