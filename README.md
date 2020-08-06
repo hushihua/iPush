@@ -1,5 +1,3 @@
-# iPush
-
 ![iPush](https://github.com/hushihua/iPush/blob/master/iPush.png)
 
 [![CI Status](https://img.shields.io/travis/adam/LMPush.svg?style=flat)](https://travis-ci.org/adam/LMPush)
