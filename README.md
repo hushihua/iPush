@@ -1,9 +1,9 @@
 ![iPush](https://github.com/hushihua/iPush/blob/master/iPush.png)
 
-[![CI Status](https://img.shields.io/travis/adam/LMPush.svg?style=flat)](https://travis-ci.org/adam/LMPush)
-[![Version](https://img.shields.io/cocoapods/v/LMPush.svg?style=flat)](https://cocoapods.org/pods/LMPush)
-[![License](https://img.shields.io/cocoapods/l/LMPush.svg?style=flat)](https://cocoapods.org/pods/LMPush)
-[![Platform](https://img.shields.io/cocoapods/p/LMPush.svg?style=flat)](https://cocoapods.org/pods/LMPush)
+[![CI Status](https://img.shields.io/travis/adam/iPush.svg?style=flat)](https://travis-ci.org/adam/iPush)
+[![Version](https://img.shields.io/cocoapods/v/iPush.svg?style=flat)](https://cocoapods.org/pods/iPush)
+[![License](https://img.shields.io/cocoapods/l/iPush.svg?style=flat)](https://cocoapods.org/pods/iPush)
+[![Platform](https://img.shields.io/cocoapods/p/iPush.svg?style=flat)](https://cocoapods.org/pods/iPush)
 
 
 iPush同时提供APNS和Tcp两种方式的下行推送功能，用户可以根据项目需要，选择性使用。
@@ -15,7 +15,7 @@ iPush同时提供APNS和Tcp两种方式的下行推送功能，用户可以根�
 
 ##  二：集成SDK
 
-### CocoaPods 集成
+### 1.CocoaPods 集成
 
 iPush支持 CocoaPods 方式和手动集成两种方式。我们推荐使用 CocoaPods 方式集成，以便随时更新至最新版本。
 
@@ -32,6 +32,9 @@ iPush支持 CocoaPods 方式和手动集成两种方式。我们推荐使用 Coc
  pod repo update
 ```
 
+### 2.主项目添加 Push Notifications 功能
+在```Targets```中选择主项，点击右则 ```Signing & Capabilities```， 点击 ```+ ```，选择``` Push Notifications```选项。
+
 ## 三：代码流程接入
 
 ### 1.在 AppDelegate.m 文件中引入 iPush，并初始化（以Swift项目为例）。
@@ -39,10 +42,15 @@ iPush支持 CocoaPods 方式和手动集成两种方式。我们推荐使用 Coc
 import iPush
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    PushApi.getInstance().DEBUG = true                                                      //true:连接测试服务
-    PushApi.getInstance().initSdk(appKey:"4d3967b5d1c4b7a3cad814af")                        //初始化sdk
-    PushApi.getInstance().registerNotification(application: application, delegate: self)    //申请获取 deviceToken
-    PushApi.getInstance().registerUID { (response:PHResponse<String>) in                    //生成register_id
+    //选择运行环境 
+    //true:测试环境，false:正式环境(默认)
+    PushApi.getInstance().DEBUG = true    
+    //初始化sdk
+    PushApi.getInstance().initSdk(appKey:“你申请生成的appkey”)  
+    //申请获取 deviceToken
+    PushApi.getInstance().registerNotification(application: application, delegate: self)    
+    //生成register_id
+    PushApi.getInstance().registerUID { (response:PHResponse<String>) in                    
         print("*** [SDK] \(response.data ?? "")")
     }
     return true
