@@ -129,4 +129,13 @@ PushApi.getInstance().registerUID { (response:PHResponse<String>) in
 }
 
 ```
+## 四. 运行Demo注意事项
+
+### 1. pod install
+下载demo项目后，打开主目录，在终端中执行 pod install。
+
+### 2. 替换你的 appkey
+打开项目，打开 AppDelegate文件，在 initSDK 方法中替换成你申请成功的appkey
+
+注意： 测试环境下的appkey，与正式环境下的appkey不相同，请分开申请。
 
