@@ -1,6 +1,6 @@
 # iPush
 
-[code-past]:https://github.com/hushihua/iPush/blob/master/iPush.png
+![iPush](https://github.com/hushihua/iPush/blob/master/iPush.png)
 
 [![CI Status](https://img.shields.io/travis/adam/LMPush.svg?style=flat)](https://travis-ci.org/adam/LMPush)
 [![Version](https://img.shields.io/cocoapods/v/LMPush.svg?style=flat)](https://cocoapods.org/pods/LMPush)
