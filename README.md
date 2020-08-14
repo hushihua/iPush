@@ -11,7 +11,7 @@ iPush同时提供APNS和Tcp两种方式的下行推送功能，用户可以根�
 
 ## 一：开设帐号，生成appkey
 
-联系工作人员，提供 boundId, 测试环境apns证书，正式环境apns证书，生成 appkey。
+联系工作人员，提供 boundId，测试环境apns证书，正式环境apns证书，生成 appkey。
 
 ##  二：集成SDK
 
@@ -56,23 +56,40 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     return true
 }
 ```
-
-调用  ```PushApi.getInstance().registerNotification(application: application, delegate: self)```方法用于申请获取 deviceToken值，成功后会通过以下```UNUserNotificationCenterDelegate```代理方法回调
+#### 申请获取 deviceToken
+调用  ```PushApi.getInstance().registerNotification(application: application, delegate: self)```方法用于申请获取 deviceToken值，成功后会通过以下```UNUserNotificationCenterDelegate```代理方法回调（原生deviceToken的回调代理方法）
 ```
 //MARK:- deviceToken申请结果回调
 func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     
 }
 ```
+
+#### 生成iPush平如下的唯一id (registerId)
+
+registerId用于在iPush平台唯一标识用户设备。生成唯一id后，上传到自己的服务中，与自己的业务系统用户id进行绑定。当需要进行推送时，业务系统附带registerId，调用iPush后台接口，对特定用记的特定设置进行精准推送。
+
+生成registerId的代码如下，可以要启动的回调方法中进行调用：
+```
+PushApi.getInstance().registerUID { (response:PHResponse<String>) in
+    if response.isSuccess = true, let sId:String = response.data{
+        print("Register_Id = \(sId)")
+    }
+}
+```
+
 ### 2. 提交APNS返回的推送token (deviceToken)
-在合适的位置进行推送token的提交，并确保提交成功。
+获取到deviceToken后， 调用pushToken方法，提交pushToken到推送平台，并确保提交成功。
 ```
 PushApi.getInstance().pushToken(data:deviceToken) { (response:PHResponse<Bool>) in
+    if response.isSuccess == true{
+        print("提交成功")
+    }
 }
 ```
 
 ### 3. 实现推送回调方法
-当收到apns推送时，将回调```UNUserNotificationCenterDelegate```代理方法如下，与原生开发一致
+当收到apns推送时，将回调```UNUserNotificationCenterDelegate```代理方法参考如下(原生apns消息回调代理方法)。如要支持ios 10以下的系统，请自行补充版本兼容代码。
 ```
 @available(iOS 10.0, *)
 func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
@@ -87,21 +104,20 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive respo
 func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     
 }
-
 ```
 
 ### 4. 设置Tcp推送监听器
 
 当需要用到Tcp通道进行推送时，要接入iPush tcp 推送流程，接入顺序如下：
 
-1. 实现 PushCmdDelegate 中的方法，当接收到tcp数据时回调 ```onReceiveCmd```方法
+1. 实现``` PushCmdDelegate``` 代理的方法，当接收到tcp数据时自动回调 ```onReceiveCmd```方法
 ```
 public protocol PushCmdDelegate: NSObject {
     func onReceiveCmd(item:PHCMDItem)
 }
 ```
 
-PHCMDItem的数据结构如下：
+PHCMDItem封装了指令中的所有可用信息，数据结构如下：
 ```
    public var type:Int?
    public var data:Any?
@@ -111,24 +127,11 @@ PHCMDItem的数据结构如下：
 
 2. 设置tcp推送监听器
 
-通过上面，完成实例化监听器后，通过以下代友实现监听器的绑定
+通过上面，完成实例化监听器后，通过以下代码实现监听器的绑定
 ```
 PushApi.getInstance().delegate = self
 ```
 
-### 5. 生成iPush平如下的唯一id (registerId)
-
-registerId用于在iPush平台唯一标识用户设备。生成唯一id后，上传到自己的服务中，与自己的业务系统用户id进行绑定。当需要进行推送时，业务系统附带registerId，调用iPush后台接口，对特定用记的特定设置进行精准推送。
-
-生成registerId的代码如下，可以要启动的回调方法中进行调用：
-```
-PushApi.getInstance().registerUID { (response:PHResponse<String>) in
-    if response.isSuccess = true, let sId:String = response.data{
-        print("Register_Id = \(String)")
-    }
-}
-
-```
 ## 四. 运行Demo注意事项
 
 ### 1. pod install
