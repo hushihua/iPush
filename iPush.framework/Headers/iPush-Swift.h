@@ -190,6 +190,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 @import Foundation;
 @import ObjectiveC;
+@import UserNotifications;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -274,15 +275,43 @@ SWIFT_CLASS("_TtC5iPush8PHSocket")
 
 
 
+@protocol PushNotificationDelegate;
+@class NSString;
 
 SWIFT_CLASS("_TtC5iPush7PushApi")
 @interface PushApi : NSObject
++ (PushApi * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
+- (void)initSDKWithAppKey:(NSString * _Nonnull)appKey SWIFT_METHOD_FAMILY(none);
+- (void)addPushHandlerWithHandler:(id <PushNotificationDelegate> _Nonnull)handler;
+- (void)debugEnable:(BOOL)debug;
+- (void)generateRUIdWithHandler:(void (^ _Nonnull)(NSString * _Nullable))handler;
+- (void)pushTokenWithData:(NSData * _Nonnull)data handler:(void (^ _Nonnull)(BOOL))handler;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
 
+@class UIApplication;
+@protocol UNUserNotificationCenterDelegate;
 
+@interface PushApi (SWIFT_EXTENSION(iPush))
+- (void)registerNotificationWithApplication:(UIApplication * _Nonnull)application delegate:(id <UNUserNotificationCenterDelegate> _Nonnull)delegate;
+@end
+
+
+SWIFT_PROTOCOL("_TtP5iPush15PushCmdDelegate_")
+@protocol PushCmdDelegate
+- (void)onReceiveCmdWithItem:(PHCMDItem * _Nonnull)item;
+@end
+
+@class UNNotification;
+
+SWIFT_PROTOCOL("_TtP5iPush24PushNotificationDelegate_")
+@protocol PushNotificationDelegate
+- (void)didReceiveWithNotification:(UNNotification * _Nonnull)notification;
+- (void)willPresentWithNotification:(UNNotification * _Nonnull)notification completionHandler:(void (^ _Nonnull)(UNNotificationPresentationOptions))completionHandler;
+- (void)didReceiveRemoteNotificationWithUserInfo:(NSDictionary * _Nonnull)userInfo;
+@end
 
 
 SWIFT_CLASS("_TtC5iPush9WebSocket")
@@ -493,6 +522,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 @import Foundation;
 @import ObjectiveC;
+@import UserNotifications;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -577,15 +607,43 @@ SWIFT_CLASS("_TtC5iPush8PHSocket")
 
 
 
+@protocol PushNotificationDelegate;
+@class NSString;
 
 SWIFT_CLASS("_TtC5iPush7PushApi")
 @interface PushApi : NSObject
++ (PushApi * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
+- (void)initSDKWithAppKey:(NSString * _Nonnull)appKey SWIFT_METHOD_FAMILY(none);
+- (void)addPushHandlerWithHandler:(id <PushNotificationDelegate> _Nonnull)handler;
+- (void)debugEnable:(BOOL)debug;
+- (void)generateRUIdWithHandler:(void (^ _Nonnull)(NSString * _Nullable))handler;
+- (void)pushTokenWithData:(NSData * _Nonnull)data handler:(void (^ _Nonnull)(BOOL))handler;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
 
+@class UIApplication;
+@protocol UNUserNotificationCenterDelegate;
 
+@interface PushApi (SWIFT_EXTENSION(iPush))
+- (void)registerNotificationWithApplication:(UIApplication * _Nonnull)application delegate:(id <UNUserNotificationCenterDelegate> _Nonnull)delegate;
+@end
+
+
+SWIFT_PROTOCOL("_TtP5iPush15PushCmdDelegate_")
+@protocol PushCmdDelegate
+- (void)onReceiveCmdWithItem:(PHCMDItem * _Nonnull)item;
+@end
+
+@class UNNotification;
+
+SWIFT_PROTOCOL("_TtP5iPush24PushNotificationDelegate_")
+@protocol PushNotificationDelegate
+- (void)didReceiveWithNotification:(UNNotification * _Nonnull)notification;
+- (void)willPresentWithNotification:(UNNotification * _Nonnull)notification completionHandler:(void (^ _Nonnull)(UNNotificationPresentationOptions))completionHandler;
+- (void)didReceiveRemoteNotificationWithUserInfo:(NSDictionary * _Nonnull)userInfo;
+@end
 
 
 SWIFT_CLASS("_TtC5iPush9WebSocket")
