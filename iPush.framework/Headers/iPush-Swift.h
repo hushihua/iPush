@@ -214,15 +214,6 @@ SWIFT_CLASS("_TtC5iPush12ConstantUtil")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class NSStream;
-
-SWIFT_CLASS("_TtC5iPush16FoundationStream")
-@interface FoundationStream : NSObject <NSStreamDelegate>
-/// Delegate for the stream methods. Processes incoming bytes
-- (void)stream:(NSStream * _Nonnull)aStream handleEvent:(NSStreamEvent)eventCode;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
 
 SWIFT_CLASS("_TtC5iPush10HttpClient")
 @interface HttpClient : NSObject
@@ -232,14 +223,8 @@ SWIFT_CLASS("_TtC5iPush10HttpClient")
 
 
 
-SWIFT_CLASS("_TtC5iPush15KeyChainManager")
-@interface KeyChainManager : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-SWIFT_CLASS("_TtC5iPush14NetworkMonitor")
-@interface NetworkMonitor : NSObject
+SWIFT_CLASS("_TtC5iPush15NetworkObserver")
+@interface NetworkObserver : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -311,13 +296,6 @@ SWIFT_PROTOCOL("_TtP5iPush24PushNotificationDelegate_")
 - (void)didReceiveWithNotification:(UNNotification * _Nonnull)notification;
 - (void)willPresentWithNotification:(UNNotification * _Nonnull)notification completionHandler:(void (^ _Nonnull)(UNNotificationPresentationOptions))completionHandler;
 - (void)didReceiveRemoteNotificationWithUserInfo:(NSDictionary * _Nonnull)userInfo;
-@end
-
-
-SWIFT_CLASS("_TtC5iPush9WebSocket")
-@interface WebSocket : NSObject <NSStreamDelegate>
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
@@ -546,15 +524,6 @@ SWIFT_CLASS("_TtC5iPush12ConstantUtil")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class NSStream;
-
-SWIFT_CLASS("_TtC5iPush16FoundationStream")
-@interface FoundationStream : NSObject <NSStreamDelegate>
-/// Delegate for the stream methods. Processes incoming bytes
-- (void)stream:(NSStream * _Nonnull)aStream handleEvent:(NSStreamEvent)eventCode;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
 
 SWIFT_CLASS("_TtC5iPush10HttpClient")
 @interface HttpClient : NSObject
@@ -564,14 +533,8 @@ SWIFT_CLASS("_TtC5iPush10HttpClient")
 
 
 
-SWIFT_CLASS("_TtC5iPush15KeyChainManager")
-@interface KeyChainManager : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-SWIFT_CLASS("_TtC5iPush14NetworkMonitor")
-@interface NetworkMonitor : NSObject
+SWIFT_CLASS("_TtC5iPush15NetworkObserver")
+@interface NetworkObserver : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -643,13 +606,6 @@ SWIFT_PROTOCOL("_TtP5iPush24PushNotificationDelegate_")
 - (void)didReceiveWithNotification:(UNNotification * _Nonnull)notification;
 - (void)willPresentWithNotification:(UNNotification * _Nonnull)notification completionHandler:(void (^ _Nonnull)(UNNotificationPresentationOptions))completionHandler;
 - (void)didReceiveRemoteNotificationWithUserInfo:(NSDictionary * _Nonnull)userInfo;
-@end
-
-
-SWIFT_CLASS("_TtC5iPush9WebSocket")
-@interface WebSocket : NSObject <NSStreamDelegate>
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
