@@ -43,7 +43,7 @@ import iPush
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     //选择运行环境 
-    //true:测试环境，false:正式环境(默认)
+    //1:测试环境，0:正式环境(默认)
     PushApi.getInstance().DEBUG = 1    
     //初始化sdk
     PushApi.getInstance().initSdk(appKey:“你申请生成的appkey”)  
