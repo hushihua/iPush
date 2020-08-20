@@ -268,7 +268,7 @@ SWIFT_CLASS("_TtC5iPush7PushApi")
 + (PushApi * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (void)initSDKWithAppKey:(NSString * _Nonnull)appKey SWIFT_METHOD_FAMILY(none);
 - (void)addPushHandlerWithHandler:(id <PushNotificationDelegate> _Nonnull)handler;
-- (void)debugEnable:(BOOL)debug;
+- (void)debugEnable:(NSInteger)debug;
 - (void)generateRUIdWithHandler:(void (^ _Nonnull)(NSString * _Nullable))handler;
 - (void)pushTokenWithData:(NSData * _Nonnull)data handler:(void (^ _Nonnull)(BOOL))handler;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -578,7 +578,7 @@ SWIFT_CLASS("_TtC5iPush7PushApi")
 + (PushApi * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (void)initSDKWithAppKey:(NSString * _Nonnull)appKey SWIFT_METHOD_FAMILY(none);
 - (void)addPushHandlerWithHandler:(id <PushNotificationDelegate> _Nonnull)handler;
-- (void)debugEnable:(BOOL)debug;
+- (void)debugEnable:(NSInteger)debug;
 - (void)generateRUIdWithHandler:(void (^ _Nonnull)(NSString * _Nullable))handler;
 - (void)pushTokenWithData:(NSData * _Nonnull)data handler:(void (^ _Nonnull)(BOOL))handler;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
