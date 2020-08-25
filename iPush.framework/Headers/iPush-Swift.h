@@ -209,18 +209,18 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 
+SWIFT_CLASS("_TtC5iPush12CMHttpClient")
+@interface CMHttpClient : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+
 SWIFT_CLASS("_TtC5iPush12ConstantUtil")
 @interface ConstantUtil : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
-
-
-SWIFT_CLASS("_TtC5iPush10HttpClient")
-@interface HttpClient : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
 
 
 SWIFT_CLASS("_TtC5iPush15NetworkObserver")
@@ -243,7 +243,7 @@ SWIFT_CLASS("_TtC5iPush9PHCMDItem")
 
 
 SWIFT_CLASS("_TtC5iPush12PHHttpClient")
-@interface PHHttpClient : HttpClient
+@interface PHHttpClient : CMHttpClient
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -519,18 +519,18 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 
+SWIFT_CLASS("_TtC5iPush12CMHttpClient")
+@interface CMHttpClient : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+
 SWIFT_CLASS("_TtC5iPush12ConstantUtil")
 @interface ConstantUtil : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
-
-
-SWIFT_CLASS("_TtC5iPush10HttpClient")
-@interface HttpClient : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
 
 
 SWIFT_CLASS("_TtC5iPush15NetworkObserver")
@@ -553,7 +553,7 @@ SWIFT_CLASS("_TtC5iPush9PHCMDItem")
 
 
 SWIFT_CLASS("_TtC5iPush12PHHttpClient")
-@interface PHHttpClient : HttpClient
+@interface PHHttpClient : CMHttpClient
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
