@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.author       = "胡式华"
   spec.name         = "iPush"
-  spec.version      = "1.1.0"
+  spec.version      = "1.1.1"
   spec.summary      = "iPush SDK for iOS"
   spec.description  = "iPush 智能推送平台 SDK for iOS"
   spec.homepage     = "https://github.com/hushihua/iPush.git"
@@ -13,5 +13,8 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.ios.deployment_target = "10.0"
   spec.ios.vendored_frameworks = "iPush.framework"
+  
+  spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
 end
