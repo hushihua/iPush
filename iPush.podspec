@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.author       = "胡式华"
   spec.name         = "iPush"
-  spec.version      = "1.1.12"
+  spec.version      = "1.1.2"
   spec.summary      = "iPush SDK for iOS"
   spec.description  = "iPush 智能推送平台 SDK for iOS"
   spec.homepage     = "https://github.com/hushihua/iPush.git"
